@@ -159,7 +159,6 @@
       display: block;
       background: var(--card);
     }
-    /* Default avatar SVG placeholder */
     .avatar-placeholder {
       width: 100%;
       aspect-ratio: 1;
@@ -262,11 +261,34 @@
       line-height: 1.6;
       flex: 1;
     }
+    .artifact-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0.5rem;
+    }
     .artifact-arrow {
       font-size: 1.1rem;
       color: var(--accent);
-      align-self: flex-end;
-      margin-top: 0.5rem;
+    }
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.35rem 0.85rem;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: all 0.3s;
+      font-family: var(--font-body);
+    }
+    .download-btn:hover {
+      background: var(--accent);
+      color: #0d0d0d;
     }
 
     /* ── CONNECT ── */
@@ -328,7 +350,7 @@
         <div class="hero-tag">Portfolio · IWU · AI/ML</div>
         <h1>Subhra <br/> <span>Shambhavi</span></h1>
         <p class="hero-bio">
-          Currently pursuing a Master's in Computer Information Systems with Artificial Intelligence at Indiana Wesleyan University. Holds MBA degree with Data Analyst experience from HCLTech. Skilled in SQL, Python and Data Analysis.
+          Currently pursuing a Master's in Artificial Intelligence with Data Analytics at Indiana Wesleyan University. Holds MBA degree with Data Analyst experience from HCLTech. Skilled in SQL, Python and Data Analysis.
         </p>
         <div class="hero-links">
           <a href="#artifacts" class="btn btn-primary">View Artifacts</a>
@@ -337,8 +359,7 @@
       </div>
       <div class="hero-photo-wrap">
         <div class="avatar-placeholder">
-          <!-- Default person silhouette -->
-            <img src="photo.jpg" class="hero-photo" alt="Shubhra Shambhavi">
+          <img src="photo.jpg" class="hero-photo" alt="Shubhra Shambhavi">
         </div>
       </div>
     </div>
@@ -350,7 +371,8 @@
       <div class="section-label">My Value</div>
       <h2 class="section-title">Personal Value Proposition</h2>
       <div class="value-card">
-          I translate raw data into strategic decisions—combining an MBA foundation with hands-on analytics experience to bridge the gap between business goals and data-driven execution. With a year at HCLTech driving insights through App Smart, and deep expertise in SQL, Python, and modern data tools, I deliver solutions that are both technically rigorous and business-relevant. My unique blend of management thinking and analytical precision positions me to lead impactful, scalable data initiatives across industries.      </div>
+        I translate raw data into strategic decisions—combining an MBA foundation with hands-on analytics experience to bridge the gap between business goals and data-driven execution. With a year at HCLTech driving insights through App Smart, and deep expertise in SQL, Python, and modern data tools, I deliver solutions that are both technically rigorous and business-relevant. My unique blend of management thinking and analytical precision positions me to lead impactful, scalable data initiatives across industries.
+      </div>
     </div>
   </section>
 
@@ -364,44 +386,63 @@
 
         <a href="#" class="artifact-card">
           <div class="artifact-num">01</div>
-          <div class="artifact-title">AI Evolution — Before &amp; After ChatGPT</div>
-          <div class="artifact-desc">A visual and analytical exploration of how AI has evolved over time, with a focus on the impact of large language models.</div>
-          <div class="artifact-arrow">→</div>
+          <div class="artifact-title">AI Interviewer</div>
+          <div class="artifact-desc">A ChatBot which will help you prepare for interviews, based on prospective job description and user's resume.</div>
+          <div class="artifact-footer">
+            <span class="artifact-arrow">→</span>
+          </div>
         </a>
 
-        <a href="#" class="artifact-card">
+        <!-- Artifact 02 — Download Word file -->
+        <div class="artifact-card">
           <div class="artifact-num">02</div>
-          <div class="artifact-title">Prompting Cheatsheet</div>
-          <div class="artifact-desc">A quick-reference guide for effective prompt engineering techniques used with modern AI models.</div>
-          <div class="artifact-arrow">→</div>
-        </a>
+          <div class="artifact-title">Deep Learning vs Machine Learning</div>
+          <div class="artifact-desc">A comparison between Deep Learning and Machine Learning covering architectures, use cases, and key differences.</div>
+          <div class="artifact-footer">
+            <a
+              href="https://raw.githubusercontent.com/shubhra-23/shubhra-23.github.io/main/dl_ml_comparison.docx"
+              download="dl_ml_comparison.docx"
+              class="download-btn"
+              onclick="event.stopPropagation()">
+              ⬇ Download
+            </a>
+          </div>
+        </div>
 
         <a href="#" class="artifact-card">
           <div class="artifact-num">03</div>
           <div class="artifact-title">IWU VisaMate</div>
           <div class="artifact-desc">A custom AI-powered tool designed to assist F1 students at IWU with visa-related questions and processes.</div>
-          <div class="artifact-arrow">→</div>
+          <div class="artifact-footer">
+            <span class="artifact-arrow">→</span>
+          </div>
         </a>
 
         <a href="#" class="artifact-card">
           <div class="artifact-num">04</div>
           <div class="artifact-title">Flash Cards</div>
           <div class="artifact-desc">An AI-assisted flashcard generator built with NotebookLM to simplify and accelerate learning deep learning concepts.</div>
-          <div class="artifact-arrow">→</div>
+          <div class="artifact-footer">
+            <span class="artifact-arrow">→</span>
+          </div>
         </a>
 
         <a href="#" class="artifact-card">
           <div class="artifact-num">05</div>
           <div class="artifact-title">Hidden "Gems" Restaurants</div>
           <div class="artifact-desc">A curated, AI-assisted guide to lesser-known but outstanding dining spots worth discovering.</div>
-          <div class="artifact-arrow">→</div>
+          <div class="artifact-footer">
+            <span class="artifact-arrow">→</span>
+          </div>
         </a>
 
         <a href="#" class="artifact-card">
           <div class="artifact-num">06</div>
           <div class="artifact-title">AI in Business — Newsletter</div>
           <div class="artifact-desc">A professionally written newsletter covering the latest trends and applications of AI across business sectors.</div>
-          <div class="artifact-arrow">→</div>
+          <div class="artifact-footer">
+            <span class="artifact-arrow">→</span>
+          </div>
         </a>
 
       </div>
