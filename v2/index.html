@@ -516,10 +516,20 @@
 
       <div class="artifacts-grid">
 
-        <div class="artifact-card" onclick="openModal()" style="cursor:pointer;">
+        <div class="artifact-card" onclick="openModal('artifactModal1')" style="cursor:pointer;">
           <div class="artifact-num">01</div>
           <div class="artifact-title">AI Interviewer</div>
           <div class="artifact-desc">A ChatBot which will help you prepare for interviews, based on prospective job description and user's resume.</div>
+          <div class="artifact-footer">
+            <span class="artifact-arrow">→</span>
+            <span class="download-btn">View Details</span>
+          </div>
+        </div>
+
+        <div class="artifact-card" onclick="openModal('artifactModal2')" style="cursor:pointer;">
+          <div class="artifact-num">02</div>
+          <div class="artifact-title">Deep Learning vs Machine Learning</div>
+          <div class="artifact-desc">A comparative analysis of Machine Learning and Deep Learning covering architectures, real-world use cases, and key differences.</div>
           <div class="artifact-footer">
             <span class="artifact-arrow">→</span>
             <span class="download-btn">View Details</span>
@@ -545,11 +555,11 @@
   </footer>
 
   <!-- ARTIFACT 01 MODAL -->
-  <div class="modal-overlay" id="artifactModal" onclick="handleOverlayClick(event)">
+  <div class="modal-overlay" id="artifactModal1" onclick="handleOverlayClick(event, 'artifactModal1')">
     <div class="modal">
 
       <div class="modal-header">
-        <button class="modal-close" onclick="closeModal()">✕</button>
+        <button class="modal-close" onclick="closeModal('artifactModal1')">✕</button>
         <div class="modal-num">Artifact 01</div>
         <div class="modal-title">AI Interviewer</div>
       </div>
@@ -641,7 +651,110 @@
         <!-- CTA -->
         <div class="modal-cta">
           <a href="https://claude.ai/public/artifacts/a00efe41-3281-446a-ad53-805f4901a1a9" target="_blank" class="btn btn-primary">↗ Launch AI Interviewer</a>
-          <button onclick="closeModal()" class="btn btn-ghost">← Back to Portfolio</button>
+          <button onclick="closeModal('artifactModal1')" class="btn btn-ghost">← Back to Portfolio</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTIFACT 02 MODAL -->
+  <div class="modal-overlay" id="artifactModal2" onclick="handleOverlayClick(event, 'artifactModal2')">
+    <div class="modal">
+
+      <div class="modal-header">
+        <button class="modal-close" onclick="closeModal('artifactModal2')">✕</button>
+        <div class="modal-num">Artifact 02</div>
+        <div class="modal-title">Deep Learning vs Machine Learning</div>
+      </div>
+
+      <div class="modal-body">
+
+        <!-- Introduction -->
+        <div>
+          <div class="modal-section-label">Introduction</div>
+          <p class="modal-intro">
+            This artifact presents a structured comparative analysis of Machine Learning and Deep Learning—two foundational pillars of modern AI. Through two real-world use cases, it examines how each paradigm's architecture, data requirements, and computational characteristics make it more or less suited for specific problem types, from structured prediction tasks to complex natural language processing.
+          </p>
+        </div>
+
+        <div class="modal-divider"></div>
+
+        <!-- Description -->
+        <div>
+          <div class="modal-section-label">Description</div>
+          <div class="modal-desc-grid">
+
+            <div class="modal-sub">
+              <div class="modal-sub-label">Objective</div>
+              <div class="modal-sub-text">
+                To critically compare Machine Learning and Deep Learning by analyzing their suitability for two distinct real-world applications—Customer Churn Prediction (ML) and Natural Language Processing (DL)—and to articulate when and why one approach outperforms the other based on data structure, interpretability, and computational cost.
+              </div>
+            </div>
+
+            <div class="modal-sub">
+              <div class="modal-sub-label">Process</div>
+              <div class="modal-sub-text">
+                The document was developed through a research and synthesis process: key concepts of ML and DL were studied and contrasted, two representative use cases were selected to ground the comparison in practice, and findings were organized into a structured written report. Each use case includes justification for the chosen technique and an explanation of why the alternative is less suitable, ensuring a balanced and analytical perspective.
+              </div>
+            </div>
+
+            <div class="modal-sub">
+              <div class="modal-sub-label">Tools &amp; Technology Used</div>
+              <div class="modal-sub-text" style="margin-bottom:0.8rem;">
+                The following tools were used to research, write, and publish this artifact:
+              </div>
+              <div class="tools-row">
+                <span class="tool-tag">Claude (Anthropic)</span>
+                <span class="tool-tag">Microsoft Word</span>
+                <span class="tool-tag">GitHub</span>
+                <span class="tool-tag">Academic Research</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="modal-divider"></div>
+
+        <!-- Value Proposition -->
+        <div>
+          <div class="modal-section-label">Value Proposition of the Artifact</div>
+          <div class="value-row">
+            <div class="modal-sub">
+              <div class="modal-sub-label">Unique Value</div>
+              <div class="modal-sub-text">
+                Rather than listing theoretical differences, this artifact anchors the ML vs DL debate in concrete industry scenarios—customer churn in telecom and NLP-driven code generation. This applied framing makes the analysis immediately actionable for practitioners choosing between techniques, and demonstrates the ability to translate technical knowledge into business-relevant decisions.
+              </div>
+            </div>
+            <div class="modal-sub">
+              <div class="modal-sub-label">Relevance</div>
+              <div class="modal-sub-text">
+                Understanding when to apply ML versus DL is a core competency for any AI/ML practitioner. This artifact directly supports the AIML-500 learning objectives around algorithm selection, model evaluation, and the responsible application of AI—skills essential for data-driven roles across industries.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-divider"></div>
+
+        <!-- References -->
+        <div>
+          <div class="modal-section-label">References</div>
+          <ul class="ref-list">
+            <li>Géron, A. (2019). <em>Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow.</em> O'Reilly Media.</li>
+            <li>Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016). <em>Deep Learning.</em> MIT Press. https://www.deeplearningbook.org</li>
+            <li>Vaswani, A. et al. (2017). <em>Attention Is All You Need.</em> NeurIPS 2017. https://arxiv.org/abs/1706.03762</li>
+            <li>Indiana Wesleyan University. (2024). <em>AIML-500: Applied Artificial Intelligence &amp; Machine Learning.</em> Course materials.</li>
+          </ul>
+        </div>
+
+        <div class="modal-divider"></div>
+
+        <!-- CTA -->
+        <div class="modal-cta">
+          <a href="dl_ml_comparison.docx" download="dl_ml_comparison.docx" class="btn btn-primary">⬇ Download Report</a>
+          <button onclick="closeModal('artifactModal2')" class="btn btn-ghost">← Back to Portfolio</button>
         </div>
 
       </div>
@@ -649,19 +762,24 @@
   </div>
 
   <script>
-    function openModal() {
-      document.getElementById('artifactModal').classList.add('open');
+    function openModal(id) {
+      document.getElementById(id).classList.add('open');
       document.body.style.overflow = 'hidden';
     }
-    function closeModal() {
-      document.getElementById('artifactModal').classList.remove('open');
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('open');
       document.body.style.overflow = '';
     }
-    function handleOverlayClick(e) {
-      if (e.target === document.getElementById('artifactModal')) closeModal();
+    function handleOverlayClick(e, id) {
+      if (e.target === document.getElementById(id)) closeModal(id);
     }
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeModal();
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.open').forEach(function(m) {
+          m.classList.remove('open');
+        });
+        document.body.style.overflow = '';
+      }
     });
   </script>
 
