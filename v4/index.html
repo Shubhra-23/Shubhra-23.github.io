@@ -312,6 +312,138 @@
       color: #555;
     }
 
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      overflow-y: auto;
+      animation: fadeIn 0.3s ease;
+    }
+    .modal-overlay.open { display: block; }
+    .modal {
+      max-width: 820px;
+      margin: 4rem auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      animation: slideUp 0.35s ease both;
+    }
+    .modal-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 2.5rem 3rem 2rem;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      background: none; border: none;
+      color: var(--muted); font-size: 1.4rem;
+      cursor: pointer; line-height: 1;
+      transition: color 0.2s;
+    }
+    .modal-close:hover { color: var(--accent); }
+    .modal-num {
+      font-size: 0.7rem; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+    .modal-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 900; color: var(--text);
+      line-height: 1.15;
+    }
+    .modal-body {
+      padding: 2.5rem 3rem 3rem;
+      display: flex; flex-direction: column; gap: 2.5rem;
+    }
+    .modal-intro {
+      font-size: 1rem; color: #bbb; line-height: 1.8;
+      border-left: 3px solid var(--accent);
+      padding-left: 1.2rem;
+    }
+    .modal-section-label {
+      font-size: 0.68rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+    .modal-section-title {
+      font-family: var(--font-head);
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--text); margin-bottom: 0.8rem;
+    }
+    .modal-text {
+      font-size: 0.92rem; color: #bbb; line-height: 1.85;
+    }
+    .modal-sub {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.4rem 1.8rem;
+      display: flex; flex-direction: column; gap: 0.4rem;
+    }
+    .modal-sub-label {
+      font-size: 0.65rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--accent);
+    }
+    .modal-sub-text {
+      font-size: 0.9rem; color: #bbb; line-height: 1.75;
+    }
+    .modal-desc-grid {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .tools-row {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+    }
+    .tool-tag {
+      font-size: 0.75rem; letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      color: var(--accent);
+      padding: 0.3rem 0.8rem;
+      border-radius: 3px;
+    }
+    .value-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .ref-list {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .ref-list li {
+      font-size: 0.88rem; color: #bbb;
+      padding-left: 1rem;
+      position: relative;
+    }
+    .ref-list li::before {
+      content: '›';
+      position: absolute; left: 0;
+      color: var(--accent);
+    }
+    .modal-cta {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      padding-top: 0.5rem;
+    }
+    .modal-divider {
+      height: 1px; background: var(--border);
+      margin: 0 -3rem;
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 768px) {
+      .modal { margin: 1rem; }
+      .modal-header { padding: 2rem 1.5rem 1.5rem; }
+      .modal-body { padding: 1.5rem 1.5rem 2rem; }
+      .value-row { grid-template-columns: 1fr; }
+      .modal-divider { margin: 0 -1.5rem; }
+    }
+
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
@@ -384,18 +516,43 @@
 
       <div class="artifacts-grid">
 
-        <div class="artifact-card">
+        <div class="artifact-card" onclick="openModal('artifactModal1')" style="cursor:pointer;">
           <div class="artifact-num">01</div>
           <div class="artifact-title">AI Interviewer</div>
           <div class="artifact-desc">A ChatBot which will help you prepare for interviews, based on prospective job description and user's resume.</div>
           <div class="artifact-footer">
-            <a
-              href="https://claude.ai/public/artifacts/a00efe41-3281-446a-ad53-805f4901a1a9"
-              target="_blank"
-              class="download-btn"
-              onclick="event.stopPropagation()">
-              ↗ View
-            </a>
+            <span class="artifact-arrow">→</span>
+            <span class="download-btn">View Details</span>
+          </div>
+        </div>
+
+        <div class="artifact-card" onclick="openModal('artifactModal2')" style="cursor:pointer;">
+          <div class="artifact-num">02</div>
+          <div class="artifact-title">Deep Learning vs Machine Learning</div>
+          <div class="artifact-desc">A comparative analysis of Machine Learning and Deep Learning covering architectures, real-world use cases, and key differences.</div>
+          <div class="artifact-footer">
+            <span class="artifact-arrow">→</span>
+            <span class="download-btn">View Details</span>
+          </div>
+        </div>
+
+        <div class="artifact-card" onclick="openModal('artifactModal3')" style="cursor:pointer;">
+          <div class="artifact-num">03</div>
+          <div class="artifact-title">ML Training Methods Coach</div>
+          <div class="artifact-desc">A collaborative AI-guided activity exploring supervised, unsupervised, and reinforcement learning through structured chatbot dialogue.</div>
+          <div class="artifact-footer">
+            <span class="artifact-arrow">→</span>
+            <span class="download-btn">View Details</span>
+          </div>
+        </div>
+
+        <div class="artifact-card" onclick="openModal('artifactModal4')" style="cursor:pointer;">
+          <div class="artifact-num">04</div>
+          <div class="artifact-title">Data Challenge Scenarios Coach</div>
+          <div class="artifact-desc">An AI-guided scenario-based activity tackling real-world data challenges in ML—covering data quality, bias, privacy, and scalability.</div>
+          <div class="artifact-footer">
+            <span class="artifact-arrow">→</span>
+            <span class="download-btn">View Details</span>
           </div>
         </div>
 
@@ -416,6 +573,441 @@
   <footer>
     © 2025 Shubhra Shambhavi · SS Portfolio · Indiana Wesleyan University
   </footer>
+
+  <!-- ARTIFACT 01 MODAL -->
+  <div class="modal-overlay" id="artifactModal1" onclick="handleOverlayClick(event, 'artifactModal1')">
+    <div class="modal">
+
+      <div class="modal-header">
+        <button class="modal-close" onclick="closeModal('artifactModal1')">✕</button>
+        <div class="modal-num">Artifact 01</div>
+        <div class="modal-title">AI Interviewer</div>
+      </div>
+
+      <div class="modal-body">
+
+        <!-- Introduction -->
+        <div>
+          <div class="modal-section-label">Introduction</div>
+          <p class="modal-intro">
+            AI Interviewer is a conversational chatbot built to help job seekers practice and prepare for interviews. Users provide a job description and their resume, and the bot generates tailored interview questions, evaluates responses, and offers constructive feedback—simulating a real interview environment powered by large language model technology.
+          </p>
+        </div>
+
+        <div class="modal-divider"></div>
+
+        <!-- Description -->
+        <div>
+          <div class="modal-section-label">Description</div>
+          <div class="modal-desc-grid">
+
+            <div class="modal-sub">
+              <div class="modal-sub-label">Objective</div>
+              <div class="modal-sub-text">
+                To design and deploy an AI-powered interview preparation tool that personalizes the mock-interview experience by aligning questions to a specific job role and the candidate's background—reducing interview anxiety and improving readiness.
+              </div>
+            </div>
+
+            <div class="modal-sub">
+              <div class="modal-sub-label">Process</div>
+              <div class="modal-sub-text">
+                The chatbot was designed using an iterative, prompt-engineering approach. The workflow began with defining user personas and requirements, followed by crafting system prompts that guide the LLM to act as a professional interviewer. Multiple rounds of testing and refinement were performed to improve question quality, feedback tone, and conversation flow. The final build was deployed as a publicly accessible artifact.
+              </div>
+            </div>
+
+            <div class="modal-sub">
+              <div class="modal-sub-label">Tools &amp; Technology Used</div>
+              <div class="modal-sub-text" style="margin-bottom:0.8rem;">
+                The following tools were used to build, test, and host this artifact:
+              </div>
+              <div class="tools-row">
+                <span class="tool-tag">Claude (Anthropic)</span>
+                <span class="tool-tag">Prompt Engineering</span>
+                <span class="tool-tag">GitHub</span>
+                <span class="tool-tag">HTML / CSS / JS</span>
+                <span class="tool-tag">LLM API</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="modal-divider"></div>
+
+        <!-- Value Proposition -->
+        <div>
+          <div class="modal-section-label">Value Proposition of the Artifact</div>
+          <div class="value-row">
+            <div class="modal-sub">
+              <div class="modal-sub-label">Unique Value</div>
+              <div class="modal-sub-text">
+                Unlike generic interview prep resources, this chatbot dynamically tailors every question to the specific job description and user's resume. It creates a personalized, interactive feedback loop that static guides or flashcards cannot replicate, making interview preparation faster, more relevant, and more effective.
+              </div>
+            </div>
+            <div class="modal-sub">
+              <div class="modal-sub-label">Relevance</div>
+              <div class="modal-sub-text">
+                As AI tools become increasingly central to workforce development and HR technology, this artifact demonstrates practical application of LLMs in a high-impact, real-world scenario. It is directly relevant to the AIML-500 course objectives around applied AI, human-centered design, and responsible AI tool development.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-divider"></div>
+
+        <!-- References -->
+        <div>
+          <div class="modal-section-label">References</div>
+          <ul class="ref-list">
+            <li>Anthropic. (2024). <em>Claude: AI assistant by Anthropic.</em> https://www.anthropic.com</li>
+            <li>GitHub. (2024). <em>GitHub Pages — Websites for you and your projects.</em> https://pages.github.com</li>
+            <li>Indiana Wesleyan University. (2024). <em>AIML-500: Applied Artificial Intelligence &amp; Machine Learning.</em> Course materials.</li>
+            <li>Brown, T. et al. (2020). <em>Language Models are Few-Shot Learners.</em> NeurIPS 2020. https://arxiv.org/abs/2005.14165</li>
+          </ul>
+        </div>
+
+        <div class="modal-divider"></div>
+
+        <!-- CTA -->
+        <div class="modal-cta">
+          <a href="https://claude.ai/public/artifacts/a00efe41-3281-446a-ad53-805f4901a1a9" target="_blank" class="btn btn-primary">↗ Launch AI Interviewer</a>
+          <button onclick="closeModal('artifactModal1')" class="btn btn-ghost">← Back to Portfolio</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTIFACT 02 MODAL -->
+  <div class="modal-overlay" id="artifactModal2" onclick="handleOverlayClick(event, 'artifactModal2')">
+    <div class="modal">
+
+      <div class="modal-header">
+        <button class="modal-close" onclick="closeModal('artifactModal2')">✕</button>
+        <div class="modal-num">Artifact 02</div>
+        <div class="modal-title">Deep Learning vs Machine Learning</div>
+      </div>
+
+      <div class="modal-body">
+
+        <!-- Introduction -->
+        <div>
+          <div class="modal-section-label">Introduction</div>
+          <p class="modal-intro">
+            This artifact presents a structured comparative analysis of Machine Learning and Deep Learning—two foundational pillars of modern AI. Through two real-world use cases, it examines how each paradigm's architecture, data requirements, and computational characteristics make it more or less suited for specific problem types, from structured prediction tasks to complex natural language processing.
+          </p>
+        </div>
+
+        <div class="modal-divider"></div>
+
+        <!-- Description -->
+        <div>
+          <div class="modal-section-label">Description</div>
+          <div class="modal-desc-grid">
+
+            <div class="modal-sub">
+              <div class="modal-sub-label">Objective</div>
+              <div class="modal-sub-text">
+                To critically compare Machine Learning and Deep Learning by analyzing their suitability for two distinct real-world applications—Customer Churn Prediction (ML) and Natural Language Processing (DL)—and to articulate when and why one approach outperforms the other based on data structure, interpretability, and computational cost.
+              </div>
+            </div>
+
+            <div class="modal-sub">
+              <div class="modal-sub-label">Process</div>
+              <div class="modal-sub-text">
+                The document was developed through a research and synthesis process: key concepts of ML and DL were studied and contrasted, two representative use cases were selected to ground the comparison in practice, and findings were organized into a structured written report. Each use case includes justification for the chosen technique and an explanation of why the alternative is less suitable, ensuring a balanced and analytical perspective.
+              </div>
+            </div>
+
+            <div class="modal-sub">
+              <div class="modal-sub-label">Tools &amp; Technology Used</div>
+              <div class="modal-sub-text" style="margin-bottom:0.8rem;">
+                The following tools were used to research, write, and publish this artifact:
+              </div>
+              <div class="tools-row">
+                <span class="tool-tag">Claude (Anthropic)</span>
+                <span class="tool-tag">Microsoft Word</span>
+                <span class="tool-tag">GitHub</span>
+                <span class="tool-tag">Academic Research</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="modal-divider"></div>
+
+        <!-- Value Proposition -->
+        <div>
+          <div class="modal-section-label">Value Proposition of the Artifact</div>
+          <div class="value-row">
+            <div class="modal-sub">
+              <div class="modal-sub-label">Unique Value</div>
+              <div class="modal-sub-text">
+                Rather than listing theoretical differences, this artifact anchors the ML vs DL debate in concrete industry scenarios—customer churn in telecom and NLP-driven code generation. This applied framing makes the analysis immediately actionable for practitioners choosing between techniques, and demonstrates the ability to translate technical knowledge into business-relevant decisions.
+              </div>
+            </div>
+            <div class="modal-sub">
+              <div class="modal-sub-label">Relevance</div>
+              <div class="modal-sub-text">
+                Understanding when to apply ML versus DL is a core competency for any AI/ML practitioner. This artifact directly supports the AIML-500 learning objectives around algorithm selection, model evaluation, and the responsible application of AI—skills essential for data-driven roles across industries.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-divider"></div>
+
+        <!-- References -->
+        <div>
+          <div class="modal-section-label">References</div>
+          <ul class="ref-list">
+            <li>Géron, A. (2019). <em>Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow.</em> O'Reilly Media.</li>
+            <li>Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016). <em>Deep Learning.</em> MIT Press. https://www.deeplearningbook.org</li>
+            <li>Vaswani, A. et al. (2017). <em>Attention Is All You Need.</em> NeurIPS 2017. https://arxiv.org/abs/1706.03762</li>
+            <li>Indiana Wesleyan University. (2024). <em>AIML-500: Applied Artificial Intelligence &amp; Machine Learning.</em> Course materials.</li>
+          </ul>
+        </div>
+
+        <div class="modal-divider"></div>
+
+        <!-- CTA -->
+        <div class="modal-cta">
+          <a href="dl_ml_comparison.docx" download="dl_ml_comparison.docx" class="btn btn-primary">⬇ Download Report</a>
+          <button onclick="closeModal('artifactModal2')" class="btn btn-ghost">← Back to Portfolio</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTIFACT 03 MODAL -->
+  <div class="modal-overlay" id="artifactModal3" onclick="handleOverlayClick(event, 'artifactModal3')">
+    <div class="modal">
+
+      <div class="modal-header">
+        <button class="modal-close" onclick="closeModal('artifactModal3')">✕</button>
+        <div class="modal-num">Artifact 03</div>
+        <div class="modal-title">ML Training Methods Coach</div>
+      </div>
+
+      <div class="modal-body">
+
+        <!-- Introduction -->
+        <div>
+          <div class="modal-section-label">Introduction</div>
+          <p class="modal-intro">
+            This artifact documents an interactive, AI-guided learning session focused on the core training methods used in machine learning. Rather than a traditional lesson, the activity used a pre-trained chatbot as a collaborative coach—posing questions, offering hints, and providing feedback to guide deeper understanding of how models learn from data.
+          </p>
+        </div>
+
+        <div class="modal-divider"></div>
+
+        <!-- Description -->
+        <div>
+          <div class="modal-section-label">Description</div>
+          <div class="modal-desc-grid">
+
+            <div class="modal-sub">
+              <div class="modal-sub-label">Objective</div>
+              <div class="modal-sub-text">
+                To explore and reinforce understanding of machine learning training methods—supervised learning, unsupervised learning, and reinforcement learning—through structured dialogue with an AI chatbot, and to connect theoretical concepts such as optimization algorithms and iterative training to real-world applications.
+              </div>
+            </div>
+
+            <div class="modal-sub">
+              <div class="modal-sub-label">Process</div>
+              <div class="modal-sub-text">
+                The activity was completed via SchoolAI.com Spaces, where a custom AI coaching chatbot guided the session through seven structured questions covering how models learn from labeled and unlabeled data, how reinforcement learning agents improve through reward signals, the role of algorithms and repetition in training, and the importance of data quality. Responses were developed through back-and-forth dialogue rather than solo reading, simulating a peer-learning environment. The session was recorded automatically by the platform for instructor evaluation.
+              </div>
+            </div>
+
+            <div class="modal-sub">
+              <div class="modal-sub-label">Tools &amp; Technology Used</div>
+              <div class="modal-sub-text" style="margin-bottom:0.8rem;">
+                The following tools and resources were used to complete this activity:
+              </div>
+              <div class="tools-row">
+                <span class="tool-tag">SchoolAI.com Spaces</span>
+                <span class="tool-tag">AI Chatbot (Coach)</span>
+                <span class="tool-tag">IBM Developer (Reading)</span>
+                <span class="tool-tag">Brightspace LMS</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="modal-divider"></div>
+
+        <!-- Value Proposition -->
+        <div>
+          <div class="modal-section-label">Value Proposition of the Artifact</div>
+          <div class="value-row">
+            <div class="modal-sub">
+              <div class="modal-sub-label">Unique Value</div>
+              <div class="modal-sub-text">
+                This artifact demonstrates not just knowledge of ML training methods, but the ability to learn collaboratively with AI—an increasingly critical skill in modern workflows. The conversational format pushed beyond surface-level recall, requiring reasoning and explanation of concepts like gradient descent, reward functions, and data iteration in a dynamic, responsive dialogue rather than a static assignment.
+              </div>
+            </div>
+            <div class="modal-sub">
+              <div class="modal-sub-label">Relevance</div>
+              <div class="modal-sub-text">
+                Understanding how ML models are trained is foundational to any AI/ML role. This activity directly supports the AIML-500 learning objectives by building conceptual fluency across all three major learning paradigms and modeling how AI tools can serve as on-demand coaches—a pattern increasingly seen in enterprise learning and development contexts.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-divider"></div>
+
+        <!-- References -->
+        <div>
+          <div class="modal-section-label">References</div>
+          <ul class="ref-list">
+            <li>IBM Developer. (n.d.). <em>A Beginner's Guide to Artificial Intelligence and Machine Learning.</em> https://developer.ibm.com/articles/cc-beginner-guide-machine-learning-ai-cognitive/</li>
+            <li>SchoolAI. (2024). <em>SchoolAI Spaces — AI-powered learning environments.</em> https://schoolai.com</li>
+            <li>Indiana Wesleyan University. (2024). <em>AIML-500: Applied Artificial Intelligence &amp; Machine Learning.</em> Course materials.</li>
+            <li>Sutton, R. S., &amp; Barto, A. G. (2018). <em>Reinforcement Learning: An Introduction.</em> MIT Press. https://incompleteideas.net/book/the-book.html</li>
+          </ul>
+        </div>
+
+        <div class="modal-divider"></div>
+
+        <!-- CTA -->
+        <div class="modal-cta">
+          <a href="https://schoolai.com" target="_blank" class="btn btn-primary">↗ Visit SchoolAI</a>
+          <button onclick="closeModal('artifactModal3')" class="btn btn-ghost">← Back to Portfolio</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTIFACT 04 MODAL -->
+  <div class="modal-overlay" id="artifactModal4" onclick="handleOverlayClick(event, 'artifactModal4')">
+    <div class="modal">
+
+      <div class="modal-header">
+        <button class="modal-close" onclick="closeModal('artifactModal4')">✕</button>
+        <div class="modal-num">Artifact 04</div>
+        <div class="modal-title">Data Challenge Scenarios Coach</div>
+      </div>
+
+      <div class="modal-body">
+
+        <!-- Introduction -->
+        <div>
+          <div class="modal-section-label">Introduction</div>
+          <p class="modal-intro">
+            This artifact captures an interactive, scenario-based learning session focused on the real-world data challenges that machine learning practitioners face daily. Using an AI coach on SchoolAI.com, the activity presented concrete situations involving data quality, bias, privacy, and scalability—requiring active decision-making and reasoning rather than passive reading.
+          </p>
+        </div>
+
+        <div class="modal-divider"></div>
+
+        <!-- Description -->
+        <div>
+          <div class="modal-section-label">Description</div>
+          <div class="modal-desc-grid">
+
+            <div class="modal-sub">
+              <div class="modal-sub-label">Objective</div>
+              <div class="modal-sub-text">
+                To develop practical problem-solving skills around common ML data challenges by working through real-world scenarios with an AI coach—specifically building the ability to discuss data processing and cleaning approaches, and to explain the complexities of data sharing, privacy, and security in machine learning applications.
+              </div>
+            </div>
+
+            <div class="modal-sub">
+              <div class="modal-sub-label">Process</div>
+              <div class="modal-sub-text">
+                The session was conducted via a custom SchoolAI Space linked by the instructor. The AI chatbot presented three real-world data scenarios, each requiring decisions about training methods and data handling strategies. For each scenario, reasoning had to be articulated and defended in dialogue, with the chatbot providing immediate feedback and follow-up prompts. The conversational format encouraged critical thinking beyond surface-level answers, and the session was automatically recorded for instructor evaluation—no separate submission was required.
+              </div>
+            </div>
+
+            <div class="modal-sub">
+              <div class="modal-sub-label">Tools &amp; Technology Used</div>
+              <div class="modal-sub-text" style="margin-bottom:0.8rem;">
+                The following tools were used throughout this activity:
+              </div>
+              <div class="tools-row">
+                <span class="tool-tag">SchoolAI.com Spaces</span>
+                <span class="tool-tag">AI Chatbot (Coach)</span>
+                <span class="tool-tag">Brightspace LMS</span>
+                <span class="tool-tag">Microsoft Teams</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="modal-divider"></div>
+
+        <!-- Value Proposition -->
+        <div>
+          <div class="modal-section-label">Value Proposition of the Artifact</div>
+          <div class="value-row">
+            <div class="modal-sub">
+              <div class="modal-sub-label">Unique Value</div>
+              <div class="modal-sub-text">
+                Unlike assignments that test recall, this activity required applied judgment—deciding how to handle messy, biased, or sensitive data in realistic scenarios. The immediate feedback loop of the AI coach meant misconceptions were corrected in real time, making the learning far more durable. It also modeled the kind of adaptive, on-the-fly reasoning that data practitioners must exercise in actual project work.
+              </div>
+            </div>
+            <div class="modal-sub">
+              <div class="modal-sub-label">Relevance</div>
+              <div class="modal-sub-text">
+                Data quality, bias, and privacy are among the most consequential challenges in production ML systems. This artifact demonstrates readiness to engage with these issues thoughtfully—directly supporting the AIML-500 objectives around responsible AI and preparing for real-world data roles where these concerns arise constantly and carry significant ethical and legal weight.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-divider"></div>
+
+        <!-- References -->
+        <div>
+          <div class="modal-section-label">References</div>
+          <ul class="ref-list">
+            <li>SchoolAI. (2024). <em>SchoolAI Spaces — AI-powered learning environments.</em> https://schoolai.com</li>
+            <li>Indiana Wesleyan University. (2024). <em>AIML-500: Applied Artificial Intelligence &amp; Machine Learning.</em> Course materials.</li>
+            <li>Gebru, T. et al. (2018). <em>Datasheets for Datasets.</em> https://arxiv.org/abs/1803.09010</li>
+            <li>Mittelstadt, B., &amp; Floridi, L. (2016). The Ethics of Big Data: Current and Foreseeable Issues in Biomedical Contexts. <em>Science and Engineering Ethics, 22</em>(2), 303–341.</li>
+          </ul>
+        </div>
+
+        <div class="modal-divider"></div>
+
+        <!-- CTA -->
+        <div class="modal-cta">
+          <a href="https://student.schoolai.com/dot/spaces/join?code=AWSM-VBMU" target="_blank" class="btn btn-primary">↗ Visit Activity</a>
+          <button onclick="closeModal('artifactModal4')" class="btn btn-ghost">← Back to Portfolio</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openModal(id) {
+      document.getElementById(id).classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function handleOverlayClick(e, id) {
+      if (e.target === document.getElementById(id)) closeModal(id);
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.open').forEach(function(m) {
+          m.classList.remove('open');
+        });
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
 
 </body>
 </html>
